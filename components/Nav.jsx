@@ -38,16 +38,18 @@ export default function Nav() {
       <div className="absolute top-0 flex justify-between items-center w-full p-3 py-4">
         {/* Logo */}
         <div>
-          <Image 
+          <Image
+            className="image"
             src={logo}
-            width={60}
-            height={60}
+            
             alt='beats headphones logo'
+            
           />
+          
         </div>
 
         {/* Menu icons */}
-        <div className="flex gap-6 items-center">
+        <div className="flex gap-3 md:gap-6 items-center">
           {/* Icon wrapper */}
           <div className="wrapper_icon">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
