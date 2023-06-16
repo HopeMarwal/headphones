@@ -4,12 +4,33 @@ import { useState } from "react"
 // Image
 import Image from "next/image"
 import logo from '../public/images/beats-electronics.svg'
+// Router
+import Link from "next/link"
+import {  usePathname } from "next/navigation"
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname()
+  
+  const menuLinks = [
+    { title: 'Home', path: '/'},
+    { title: 'About', path: '/about'},
+    { title: 'Product', path: '/products'},
+  ]
+
+  const listItems = menuLinks.map((item) => (
+    <li 
+      key={item.title}
+      className={pathname == item.path ? 'active' : ''}
+      onClick={() => setIsMenuOpen(false)}
+    >
+      <Link href={item.path}>{item.title}</Link>
+    </li>
+  ))
+
 
   const handleToggleMenu = () => {
-
+    setIsMenuOpen((prev) => !prev)
   }
 
   return (
@@ -66,13 +87,14 @@ export default function Nav() {
               <path d="M39.5007 27H10.334" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
-          
-
         </div>
+        {isMenuOpen && 
+          <ul className="absolute top-16 right-3 p-3 px-5 bg-white/40 rounded-b-lg backdrop-blur-md ">
+            {listItems}
+          </ul>
+        }
+
       </div>
-
-      
-
     </nav>
   )
 }

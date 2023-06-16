@@ -2,7 +2,7 @@
 
 export default function page() {
   return (
-    <div>
+    <div className="bg-primary-red h-40">
       Product
     </div>
   )
