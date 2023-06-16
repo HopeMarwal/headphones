@@ -41,9 +41,7 @@ export default function Nav() {
           <Image
             className="image"
             src={logo}
-            
             alt='beats headphones logo'
-            
           />
           
         </div>

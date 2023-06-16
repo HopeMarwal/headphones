@@ -14,7 +14,7 @@ header {
 }
 
 h3 {
-  @apply font-bold text-5xl text-secondary-gray font-bold text-center;
+  @apply font-bold text-4xl sm:text-5xl text-secondary-gray font-bold text-center;
 }
 
 .btn {
@@ -46,6 +46,11 @@ nav li.active {
   @apply text-red-600;
 }
 
+/* Footer */
+
+footer {
+  @apply w-full bg-primary-red;
+}
 /* Carousel */
 
 
