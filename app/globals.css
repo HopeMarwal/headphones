@@ -92,3 +92,23 @@ nav li.active {
 .desc svg {
   display: inline-block;
 }
+
+/* Case */
+
+.case {
+  @apply w-full p-3 flex flex-wrap items-center;
+}
+
+.case li {
+  @apply text-black/70 text-lg font-normal border-b p-3 flex items-center;
+  
+}
+
+.case li:last-child {
+  border: none;
+}
+
+.case li::before {
+  @apply mr-2 mt-2;
+  content: url('../public/icons/arrow.svg');
+}

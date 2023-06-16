@@ -5,6 +5,7 @@ import heroImg from '../public/images/hero_banner_img.png'
 import CarouselProducts from "@/components/CarouselProducts"
 import ProductItemMain from "@/components/ProductItemMain"
 import Products from "@/components/Products"
+import CaseBag from "@/components/CaseBag"
 
 export default function Home() {
   return (
@@ -45,6 +46,7 @@ export default function Home() {
         <CarouselProducts />
         <ProductItemMain />
         <Products heading='Our Latest Product'/>
+        <CaseBag />
       </div>
       
     </main>
