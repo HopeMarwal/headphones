@@ -38,7 +38,7 @@ export default function CarouselProducts() {
 
   return (
     <div className='py-20'>
-      <h3 className='text-center text-5xl text-secondary-gray font-bold'>Our Latest <br />colour collection 2023</h3>
+      <h3>Our Latest <br />colour collection 2023</h3>
       <div className='relative mt-10 flex items-center'>
 
       <button

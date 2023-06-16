@@ -16,6 +16,9 @@ module.exports = {
         'primary-red': '#FF4948',
         'secondary-gray': '#180202',
         'primary-white': '#E5E5E5'
+      },
+      width: {
+        '33pr' : '33%'
       }
     },
   },

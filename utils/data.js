@@ -1,7 +1,11 @@
-//Images spec
+// Images spec
 import micro from '../public/icons/micro.svg'
 import bluetooth from '../public/icons/bluetooth.svg'
 import battery from '../public/icons/battery.svg'
+// Products
+import rose from '../public/images/rose.png'
+import dark_blue from '../public/images/dark_blue.png'
+import green from '../public/images/green.png'
 
 const specifications = [
   {
@@ -21,4 +25,25 @@ const specifications = [
   },
 ]
 
-export { specifications }
+const products = [
+  {
+    name: 'red headphones',
+    rating: 5.0,
+    price: '256',
+    img: rose
+  },
+  {
+    name: 'blue headphones',
+    rating: 4.5,
+    price: '256',
+    img: dark_blue
+  },
+  {
+    name: 'green headphones',
+    rating: 5.0,
+    price: '256',
+    img: green
+  }
+]
+
+export { specifications, products }

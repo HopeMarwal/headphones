@@ -4,6 +4,7 @@ import heroImg from '../public/images/hero_banner_img.png'
 // Components
 import CarouselProducts from "@/components/CarouselProducts"
 import ProductItemMain from "@/components/ProductItemMain"
+import Products from "@/components/Products"
 
 export default function Home() {
   return (
@@ -43,6 +44,7 @@ export default function Home() {
       <div className="max-w-6xl mx-auto">
         <CarouselProducts />
         <ProductItemMain />
+        <Products heading='Our Latest Product'/>
       </div>
       
     </main>
