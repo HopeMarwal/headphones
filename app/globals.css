@@ -2,26 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  position: relative;
+}
+header {
+  @apply w-full py-14 pt-24;
+  background-image: url('../public/images/bg.svg'), linear-gradient(74.79deg, #FF9292 -7.33%, #DE5150 90.21%);
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.btn {
+  @apply uppercase transition-all text-primary-red bg-white px-8 py-3 w-fit rounded-3xl font-semibold;
+}
+
+.btn:hover, .btn:active {
+  @apply bg-primary-red text-white shadow-sm;
+}
+
+nav {
+  @apply relative w-full max-w-6xl m-auto;
+}
+
+.wrapper_icon {
+  @apply bg-white rounded-full flex items-center justify-center w-11 h-11;
 }
