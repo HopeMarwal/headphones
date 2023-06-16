@@ -112,3 +112,24 @@ nav li.active {
   @apply mr-2 mt-2;
   content: url('../public/icons/arrow.svg');
 }
+
+/* Subscribe */
+
+.subscribe {
+  background-image: url('../public/images/bg_subscribe.png');
+  background-size: contain;
+  padding: 40px 0 40px 0;
+}
+
+.subscribe input {
+  @apply w-full px-5 outline-none -mr-5;
+  border-radius: 40px 0 0 40px;
+  
+}
+.subscribe .btn {
+  @apply bg-primary-red text-white border border-primary-red;
+}
+
+.subscribe .btn:hover, .subscribe .btn:active {
+  @apply bg-white text-primary-red border;
+}

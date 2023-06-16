@@ -6,6 +6,7 @@ import CarouselProducts from "@/components/CarouselProducts"
 import ProductItemMain from "@/components/ProductItemMain"
 import Products from "@/components/Products"
 import CaseBag from "@/components/CaseBag"
+import Subscribe from "@/components/Subscribe"
 
 export default function Home() {
   return (
@@ -47,6 +48,7 @@ export default function Home() {
         <ProductItemMain />
         <Products heading='Our Latest Product'/>
         <CaseBag />
+        <Subscribe />
       </div>
       
     </main>
