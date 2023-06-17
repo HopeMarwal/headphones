@@ -9,7 +9,7 @@ export default function Products(props) {
       <div className="flex flex-wrap w-full justify-between">
         {
           products.map((product) => (
-            <ProductCard data={product} key={product.name} />
+            <ProductCard data={product} key={product.id} />
           ))
         }
       </div>

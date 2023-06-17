@@ -15,7 +15,7 @@ export default function Subscribe() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email address"
           />
-          <button className="btn" type="submit">Subscribe</button>
+          <button className="btn secondary" type="submit">Subscribe</button>
         </form>
       </div>
     </div>

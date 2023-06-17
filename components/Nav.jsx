@@ -53,11 +53,6 @@ export default function Nav() {
                   <path d="M10.4993 20.0837C5.20647 20.0837 0.916016 15.7932 0.916016 10.5003C0.916016 5.20745 5.20647 0.916995 10.4993 0.916995C11.9873 0.915877 13.455 1.26178 14.7859 1.92721C16.1168 2.59265 17.2741 3.55929 18.166 4.75033H15.5689C14.4623 3.77451 13.0976 3.13875 11.6385 2.91934C10.1795 2.69992 8.68816 2.90616 7.34345 3.51332C5.99874 4.12048 4.85778 5.10277 4.0575 6.3423C3.25722 7.58183 2.8316 9.02596 2.83172 10.5014C2.83184 11.9768 3.2577 13.4209 4.05819 14.6603C4.85868 15.8997 5.9998 16.8818 7.34461 17.4887C8.68943 18.0956 10.1808 18.3016 11.6398 18.082C13.0988 17.8623 14.4634 17.2263 15.5699 16.2503H18.167C17.275 17.4415 16.1175 18.4082 14.7864 19.0737C13.4554 19.7391 11.9875 20.0849 10.4993 20.0837ZM17.2077 14.3337V11.4587H9.54101V9.54199H17.2077V6.66699L21.9993 10.5003L17.2077 14.3337Z" fill="#FF4948"/>
                 </svg>
   
-  
-  
-  
-  
-
   const handleToggleMenu = () => {
     setIsMenuOpen((prev) => !prev)
   }
@@ -72,7 +67,6 @@ export default function Nav() {
             src={logo}
             alt='beats headphones logo'
           />
-          
         </div>
 
         {/* Menu icons */}
@@ -104,10 +98,7 @@ export default function Nav() {
                 Object.values(providers).map((prov) => (
                   <button key={prov.id} onClick={() => signIn(prov.id)}>{login}</button>
                 ))
-
             }
-            
-            
           </div>
 
         </div>
@@ -124,11 +115,10 @@ export default function Nav() {
           </button>
         </div>
         {isMenuOpen && 
-          <ul className="absolute top-16 right-3 p-3 px-5 bg-white/40 rounded-b-lg backdrop-blur-md ">
+          <ul className="absolute top-20 right-0 p-3 px-5 bg-secondary-gray/30 rounded-es-lg backdrop-blur-md ">
             {listItems}
           </ul>
         }
-
       </div>
     </nav>
   )

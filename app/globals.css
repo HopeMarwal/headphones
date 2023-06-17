@@ -25,6 +25,13 @@ h3 {
   @apply bg-primary-red text-white shadow-sm;
 }
 
+.btn.secondary {
+  @apply bg-primary-red text-white border border-primary-red w-full sm:w-fit;
+}
+.btn.secondary:hover, .btn.secondary:active {
+  @apply bg-white text-primary-red border;
+}
+
 .image {
   @apply w-10 h-10 md:w-14 md:h-14;
 }
@@ -39,11 +46,11 @@ nav {
 }
 
 nav li {
-  @apply text-xl p-2 text-white font-bold;
+  @apply text-xl p-2 text-white font-bold border-b border-b-transparent transition-all;
 }
 
-nav li.active {
-  @apply text-red-600;
+nav li:hover, nav li.active {
+  @apply border-b-white;
 }
 
 /* Footer */
@@ -94,7 +101,7 @@ footer {
 .desc {
   @apply py-4 text-secondary-gray;
 }
-.desc svg {
+.desc svg, .product_page svg {
   display: inline-block;
 }
 
@@ -131,10 +138,10 @@ footer {
   border-radius: 40px 0 0 40px;
   
 }
-.subscribe .btn {
-  @apply bg-primary-red text-white border border-primary-red;
-}
 
-.subscribe .btn:hover, .subscribe .btn:active {
-  @apply bg-white text-primary-red border;
+/* Product page */
+.product_page {
+  @apply min-h-screen flex justify-start max-w-6xl m-auto flex-wrap p-3 items-start;
+  background-image: url('../public/images/bg_subscribe.png');
+  background-size: contain;
 }

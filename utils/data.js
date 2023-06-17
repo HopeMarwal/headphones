@@ -30,19 +30,37 @@ const products = [
     name: 'red headphones',
     rating: 5.0,
     price: '256',
-    img: rose
+    img: rose,
+    id: 'red_headphones',
+    specifications: {
+      battery: 'Battery 6.2V-AAC codec',
+      bluetooth: 'Battery 6.2V-AAC codec',
+      microphone: 'Battery 6.2V-AAC codec'
+    }
   },
   {
     name: 'blue headphones',
     rating: 4.5,
     price: '256',
-    img: dark_blue
+    img: dark_blue,
+    id: 'blue_headphones',
+    specifications: {
+      battery: 'Battery 6.2V-AAC codec',
+      bluetooth: 'Battery 6.2V-AAC codec',
+      microphone: 'Battery 6.2V-AAC codec'
+    }
   },
   {
     name: 'green headphones',
     rating: 5.0,
     price: '256',
-    img: green
+    img: green,
+    id: 'green_headphones',
+    specifications: {
+      battery: 'Battery 6.2V-AAC codec',
+      bluetooth: 'Battery 6.2V-AAC codec',
+      microphone: 'Battery 6.2V-AAC codec'
+    }
   }
 ]
 

@@ -5,6 +5,8 @@ import Image from "next/image"
 import cart from '../public/icons/cart_icon.svg'
 // Rating 
 import { Rating } from "react-simple-star-rating"
+// Next nav
+import Link from "next/link"
 
 export default function ProductCard({ data }) {
   
@@ -14,7 +16,7 @@ export default function ProductCard({ data }) {
                       ? 'bg-green-200'
                       : 'bg-sky-200'
   return (
-    <div className="w-full sm:w-9/12 m-auto md:w-33pr px-4 mb-9">
+    <Link href={`/products/${data.id}`} className="w-full sm:w-9/12 m-auto md:w-33pr px-4 mb-9">
       {/* Image */}
       <div className={`${bg_color} h-56 relative rounded-3xl`}>
         <Image
@@ -46,6 +48,6 @@ export default function ProductCard({ data }) {
         
       </div>
      
-    </div>
+    </Link>
   )
 }
