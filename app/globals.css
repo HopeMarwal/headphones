@@ -38,11 +38,11 @@ h3 {
 
 /* Nav */
 nav {
-  @apply relative w-full max-w-6xl m-auto;
+  @apply relative w-full max-w-6xl m-auto z-10;
 }
 
 .wrapper_icon {
-  @apply bg-white rounded-full flex items-center justify-center w-9 h-9 md:w-11 md:h-11;
+  @apply bg-white rounded-full flex items-center justify-center w-9 h-9 md:w-11 md:h-11 text-primary-red text-2xl;
 }
 
 nav li {
@@ -144,4 +144,14 @@ footer {
   @apply min-h-screen flex justify-start max-w-6xl m-auto flex-wrap p-3 items-start;
   background-image: url('../public/images/bg_subscribe.png');
   background-size: contain;
+}
+
+/* Cart */
+
+.product_item {
+  @apply w-full p-3 flex border rounded mb-4 gap-4;
+}
+
+.product_item svg {
+  display: inline-block;
 }

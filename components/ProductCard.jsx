@@ -23,6 +23,8 @@ export default function ProductCard({ data }) {
           src={data.img}
           alt={data.name}
           className="product_image"
+          width={200}
+          height={200}
         />
         <div className={`${bg_color} absolute -right-6 -top-6 p-3 rounded-full w-14 h-14 flex items-center justify-center border-4 border-white `}>
           {/* TODO: handle add to cart item */}
