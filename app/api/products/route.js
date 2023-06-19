@@ -1,11 +1,11 @@
 import { connectToDb } from "@/utils/database";
 import Products from "@/models/products";
 
+// get all Product
 export const GET = async (req) => {
   try {
     await connectToDb();
     const products = await Products.find({})
-    console.log('call to db')
     return new Response(JSON.stringify(products), { status: 200 })
 
   } catch (error) {

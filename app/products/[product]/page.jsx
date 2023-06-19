@@ -1,18 +1,15 @@
 'use client'
 //hooks
 import { useState, useEffect } from "react"
-//data
-//import { products } from "@/utils/data"
+import { useSession } from "next-auth/react"
 //Image 
 import Image from 'next/image'
 // Images spec
 import micro from '@/public/icons/micro.svg'
 import bluetooth from '@/public/icons/bluetooth.svg'
 import battery from '@/public/icons/battery.svg'
-// Icons
+// Components
 import { Rating } from "react-simple-star-rating"
-import { useSession } from "next-auth/react"
-
 
 export default function page({ params }) {
   const [product, setProduct] = useState(null);
@@ -20,17 +17,15 @@ export default function page({ params }) {
   const { data: session } = useSession()
 
   useEffect(() => {
-    //Fetch product data 
+    //Fetch single product data 
     const fetchProduct = async () => {
       const res = await fetch(`/api/products/product/${params.product}`)
       const data = await res.json()
-      console.log(data)
       setProduct(data)
     }
     fetchProduct()
   }, [params.product])
 
- 
   const handleAddToCart = async () => {
     setStatus('process')
     try {
@@ -43,6 +38,7 @@ export default function page({ params }) {
           productId: product._id
         })
       })
+      // If item is already in cart
       if(res.status === 208) {
         window.alert('Already in the cart')
       }
@@ -65,42 +61,40 @@ export default function page({ params }) {
                           <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
                       </svg><span>Processing...</span>
                       <span className="sr-only">Loading...</span>
-                      
                     </div></>
   
   return (
     <div>
       <div className="h-20 bg-primary-red"></div>
-      {product &&
+      { product &&
       <div className='product_page'>
 
-        {/* Product Image */}
         <div className='w-full sm:w-6/12 pr-0 sm:pr-10'>
+          {/* Product Image */}
           <Image
-            src={product?.img}
+            src={product.img}
             alt='headphones'
             width={300}
             height={300}
             className='m-auto'
           />
-          
+          {/* Product description */}
           <div className="flex flex-wrap w-full sm:w-7/12 m-auto mt-6 ">
-            {/* Add to cart */}
+            
             <div className="w-full flex flex-wrap justify-between text-xl items-center">
               <p className="text-primary-red text-2xl font-bold">$ {product?.price}</p>
               <Rating
-                initialValue={product?.rating}
+                initialValue={product.rating}
                 readonly={true}
                 allowFraction={true}
               />
-              
+              {/* Add to cart */}
               <button onClick={handleAddToCart} className="btn secondary mt-4 mx-0 sm:mx-auto w-full">
                 { status === 'process'
                   ? processBtn
                   : status === 'done'
                     ? 'Success'
                     : 'Add to cart'
-                  
                 }
               </button>
               
@@ -111,7 +105,7 @@ export default function page({ params }) {
         {/* Product specifications */}
         <div className='w-full sm:w-6/12'>
           <h3 className='text-4xl text-secondary-gray font-bold my-10 text-center sm:text-left capitalize'>
-            {product?.name}
+            {product.name}
           </h3>
           {Object.entries(product?.specifications).map(([key, value]) => (
               <div key={key} className='flex gap-3 mb-4 items-center justify-center sm:justify-start'>

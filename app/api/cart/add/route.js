@@ -7,21 +7,21 @@ export const POST = async (req, res) => {
     await connectToDb();
     const existingCart = await Cart.findOne({ user: userId})
 
+    // Cart is already in collection
     if(existingCart) {
 
-      // CHeck if item is in Cart
+      // Check if item is in Cart
       let isItemInCart = false
       existingCart.products.forEach(el => {
         if( el.product_id == productId) {
           isItemInCart = true
         }
       });
+      if( isItemInCart ) {
+        return new Response('Item is already in your cart', { status: 208})
+      }
 
-     //if item in cart return item is in the cart
-     if( isItemInCart ) {
-      return new Response('Item is already in your cart', { status: 208})
-     }
-
+      // if current item is not in the cart - add one
       const itemToAdd = {
         user: userId,
         quantity: quantity,
@@ -29,18 +29,15 @@ export const POST = async (req, res) => {
       }
       existingCart.products.push(itemToAdd)
 
+      // Save changes 
       await existingCart.save()
       return new Response(JSON.stringify(existingCart), { status: 200 })
       
     } else {
+      // If no cart create one
       const newCartItem = new Cart({
         user: userId,
-        products: [
-          {
-            product_id: productId,
-            quantity: quantity
-          }
-        ]
+        products: [ { product_id: productId, quantity: quantity } ]
       })
       await newCartItem.save()
       

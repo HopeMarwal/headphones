@@ -1,6 +1,7 @@
 import { connectToDb } from "@/utils/database"
 import Cart from "@/models/cart";
 
+// Get user cart with products data
 export const GET = async (req, { params }) => {
   try {
     await connectToDb();

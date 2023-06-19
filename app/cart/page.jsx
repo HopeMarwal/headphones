@@ -7,6 +7,7 @@ import CartItem from "@/components/CartItem"
 // Hooks
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+// Next navigation
 import Link from "next/link";
 
 export default function page() {
@@ -15,7 +16,6 @@ export default function page() {
   const [ total, setTotal ] = useState(null)
   // Hooks
   const { data: session } = useSession()
-
 
   useEffect(() => {
     //Fetch cart data 
@@ -32,16 +32,13 @@ export default function page() {
 
  
   const handleChange = (qty, id) => {
-    
     let newCart = {...cartItems}
-
     // Change qty value
     newCart.products.forEach(el => {
       if( el._id === id) {
         el.quantity = qty
       }
     });
-
     // Calc total
     let totalCount = calculateTotal(newCart.products)
     setCartItems(newCart)
@@ -51,15 +48,12 @@ export default function page() {
 
   const handleDelete = (id) => {
     let products = [...cartItems.products]
-
     //Find product to delete by id
     products = products.filter(el => el.product_id._id !== id )
-
     //Recalculate total
     let totalCount = calculateTotal(products)
     setCartItems({...cartItems, products: products})
     setTotal(totalCount)
-
   }
 
 
@@ -83,6 +77,7 @@ export default function page() {
   return (
     <div className="min-h-screen">
       <div className='h-40 bg-primary-red'></div>
+      {/* Image banner */}
       <div className="relative p-10 ">
         <div className="z-10 absolute left-1/2 -top-16 -translate-x-1/2 rounded-full w-7 h-7 bg-white text-secondary-gray flex items-center justify-center">
           {cartItems ? cartItems.products.length : '0' }
@@ -95,46 +90,44 @@ export default function page() {
           alt='icon cart'
         />
       </div>
-      <div className="flex max-w-xl m-auto p-3 flex-wrap">
-        {/* Cart Items container */}
-        {
-          cartItems?.products.length 
-            ? (
-              <>
-                <div className="flex w-full flex-wrap">
-                  { 
-                    cartItems.products.map((item) => (
-                      <CartItem
-                        cart_id={cartItems._id}
-                        key={item._id}
-                        product={item.product_id}
-                        quantity={item.quantity}
-                        id={item._id}
-                        handleChangeQty={handleChange}
-                        handleDeleteItem={handleDelete}
-                      />
-                    ))
-                  }
-                </div>
-                {/* cart footer */}
-                <div className="w-full border">
-                  <div className="flex justify-between items-center p-3">
-                    <p className="font-bold">Total:</p>
-                    <p className="font-bold text-secondary-gray/70 text-lg">$ {total}</p>
-                  </div>
-                  
-                  <button className="w-full bg-primary-red text-white py-3 font-bold active:bg-secondary-gray hover:bg-secondary-gray transition-all">
-                    Checkout
-                  </button>
-                </div>
-              </>)
-            : emptyCart
-        }
-        
-      </div>
-      
-      
 
+      {/* If no products display emptyCart else render items */}
+      <div className="flex max-w-xl m-auto p-3 flex-wrap">
+        {cartItems?.products.length 
+          ? (
+            <>
+              <div className="flex w-full flex-wrap">
+                {/* Map over products */}
+                { 
+                  cartItems.products.map((item) => (
+                    <CartItem
+                      cart_id={cartItems._id}
+                      key={item._id}
+                      product={item.product_id}
+                      quantity={item.quantity}
+                      id={item._id}
+                      handleChangeQty={handleChange}
+                      handleDeleteItem={handleDelete}
+                    />
+                  ))
+                }
+              </div>
+              {/* Cart footer */}
+              <div className="w-full border">
+
+                <div className="flex justify-between items-center p-3">
+                  <p className="font-bold">Total:</p>
+                  <p className="font-bold text-secondary-gray/70 text-lg">$ {total}</p>
+                </div>
+                
+                <button className="w-full bg-primary-red text-white py-3 font-bold active:bg-secondary-gray hover:bg-secondary-gray transition-all">
+                  Checkout
+                </button>
+              </div>
+            </>)
+          : emptyCart
+        }
+      </div>
     </div>
   )
 }

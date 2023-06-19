@@ -7,7 +7,7 @@ export const PATCH = async ( req ) => {
 
   try {
     await connectToDb();
-    //get Cart by id
+    // Get Cart by id
     const existingCart = await Cart.findOne({ user: userId})
 
     // Check if Cart exists
@@ -15,11 +15,9 @@ export const PATCH = async ( req ) => {
       return new Response('Product not found', { status: 404 })
     }
     
-    // Find product by productID
+    // Find product by productID and update qty value
     for(let i = 0; i < existingCart.products.length; i++) {
-     
       if(existingCart.products[i].product_id == productId) {
-       
         existingCart.products[i].quantity = quantity
       }
     }

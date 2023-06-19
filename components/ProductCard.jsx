@@ -1,15 +1,17 @@
 'use client'
+// Hooks 
 import { useState } from "react"
-import Image from "next/image"
+import { useSession } from "next-auth/react"
 //Icon
+import Image from "next/image"
 import { BsCartCheckFill,  BsFillCartFill} from 'react-icons/bs'
 // Rating 
 import { Rating } from "react-simple-star-rating"
 // Next nav
 import Link from "next/link"
-import { useSession } from "next-auth/react"
 
 export default function ProductCard({ data }) {
+  // State
   const [status, setStatus] = useState('default');
   const { data: session } = useSession()
 
@@ -20,7 +22,7 @@ export default function ProductCard({ data }) {
     }
     setStatus('process')
     try {
-      // API POST new prompt to db
+      // API POST new product to cart db
       const res = await fetch('/api/cart/add', {
         method: 'POST',
         body: JSON.stringify({
@@ -29,9 +31,11 @@ export default function ProductCard({ data }) {
           productId: data._id
         })
       })
+      // Product Item already in cart
       if(res.status === 208) {
         window.alert('Already in the cart')
       }
+      // Product successfully added to cast
       if(res.status === 200) {
         setStatus('done')
       }
@@ -45,6 +49,7 @@ export default function ProductCard({ data }) {
     }
   }
   
+  //Set bg color of image container based on main headphones color
   const bg_color = data.name.includes('red') 
                     ? 'bg-pink-100' 
                     : data.name.includes('green') 
@@ -59,7 +64,6 @@ export default function ProductCard({ data }) {
                       <span className="sr-only">Loading...</span>
                     </div>
                 
-
   return (
     <div className="w-full sm:w-9/12 m-auto md:w-33pr px-4 mb-9">
       {/* Image */}
@@ -73,7 +77,8 @@ export default function ProductCard({ data }) {
             height={200}
           />
         </Link>
-        
+
+        {/* Add to cart button */}
         <div
           onClick={handleAddToCart}
           className={`${bg_color} absolute cursor-pointer disabled:cursor-wait -right-6 -top-6 p-3 rounded-full w-14 h-14 flex items-center justify-center border-4 border-white `}
@@ -86,7 +91,6 @@ export default function ProductCard({ data }) {
               ? <BsCartCheckFill className="text-green-700 text-xl"/>
               : <BsFillCartFill className="text-secondary-gray/60 text-xl" />
           }
-          
         </div>
         
       </div>
