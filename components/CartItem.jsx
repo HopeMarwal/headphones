@@ -7,7 +7,7 @@ import { Rating } from "react-simple-star-rating"
 import { useSession } from "next-auth/react"
 import { useState } from "react"
 
-export default function CartItem({ product, quantity }) {
+export default function CartItem({ product, quantity, id, handleChangeQty }) {
   // State data
   const [qty, setQty] = useState(quantity);
   const { data: session } = useSession()
@@ -15,9 +15,9 @@ export default function CartItem({ product, quantity }) {
   const handleQuantity = async (action) => {
     let newQty;
     if(action === 'decr') {
-      newQty = qty - 1
+      newQty = quantity - 1
     } else {
-      newQty = qty + 1
+      newQty = quantity + 1
     }
     try {
       // API PATCH new qty value to db
@@ -30,7 +30,7 @@ export default function CartItem({ product, quantity }) {
         })
       })
       if(res.ok) {
-        setQty(newQty)
+        handleChangeQty(newQty, id)
       }
     } catch (error) {
       console.log(error)
@@ -63,14 +63,14 @@ export default function CartItem({ product, quantity }) {
         <div className="flex border w-fit mt-auto">
           {/* Disabled if quantity = 1 */}
           <button
-            disabled={qty === 1}
+            disabled={quantity === 1}
             onClick={() => handleQuantity('decr')}
             className="w-8 h-8 flex justify-center items-center text-red-700 bg-secondary-gray/5 transition-all hover:bg-secondary-gray/10 disabled:opacity-50 disabled:hover:bg-secondary-gray/5"
           >
             -
           </button>
 
-          <div className="w-8 h-8 flex justify-center items-center">{qty}</div>
+          <div className="w-8 h-8 flex justify-center items-center">{quantity}</div>
 
           <button
             onClick={() => handleQuantity('incr')}

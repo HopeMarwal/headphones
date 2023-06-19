@@ -14,6 +14,7 @@ export default function page() {
   const [ total, setTotal ] = useState(null)
   // Hooks
   const { data: session } = useSession()
+
  
   useEffect(() => {
     //Fetch cart data 
@@ -21,16 +22,39 @@ export default function page() {
       const res = await fetch(`/api/cart/${session?.user.id}`)
       const data = await res.json()
       // Count total
-      let totalCount = 0
-      data[0].products.forEach(el => {
-        totalCount = totalCount + el.quantity * el.product_id.price
-      });
-  
+      let totalCount = calculateTotal(data)
       setTotal(totalCount)
       setCartItems(data)
     }
     if(session?.user.id) fetchCart()
-  }, [])
+  }, [session?.user.id])
+
+ 
+  const handleChange = (qty, id) => {
+    
+    let newCart = [...cartItems]
+
+    // Change qty value
+    newCart[0].products.forEach(el => {
+      if( el._id === id) {
+        el.quantity = qty
+      }
+    });
+
+    // Calc total
+    let totalCount = calculateTotal(newCart)
+    setCartItems(newCart)
+    setTotal(totalCount)
+    
+  }
+
+  const calculateTotal = (data) => {
+    let totalCount = 0
+    data[0].products.forEach(el => {
+      totalCount = totalCount + el.quantity * el.product_id.price
+    });
+    return totalCount
+  }
 
   return (
     <div>
@@ -49,7 +73,13 @@ export default function page() {
         <div className="flex w-full flex-wrap">
           { cartItems &&
             cartItems[0].products.map((item) => (
-              <CartItem key={item._id} product={item.product_id} quantity={item.quantity}/>
+              <CartItem
+                key={item._id}
+                product={item.product_id}
+                quantity={item.quantity}
+                id={item._id}
+                handleChangeQty={handleChange}
+              />
             ))
           }
         </div>
