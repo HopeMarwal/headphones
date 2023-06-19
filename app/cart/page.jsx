@@ -7,6 +7,7 @@ import CartItem from "@/components/CartItem"
 // Hooks
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 export default function page() {
   // State
@@ -70,6 +71,15 @@ export default function page() {
     return totalCount
   }
 
+  const emptyCart = <div className="flex max-w-xl m-auto p-3 font-bold text-4xl flex-wrap text-center">
+                      <p className="w-full">Your cart is empty.</p>
+                      <p className="w-full">
+                        Visit {' '}
+                        <Link className="text-primary-red" href='/products'>product page</Link>.
+                      </p>
+                    </div>
+ 
+
   return (
     <div className="min-h-screen">
       <div className='h-40 bg-primary-red'></div>
@@ -87,33 +97,43 @@ export default function page() {
       </div>
       <div className="flex max-w-xl m-auto p-3 flex-wrap">
         {/* Cart Items container */}
-        <div className="flex w-full flex-wrap">
-          { cartItems &&
-            cartItems.products.map((item) => (
-              <CartItem
-                cart_id={cartItems._id}
-                key={item._id}
-                product={item.product_id}
-                quantity={item.quantity}
-                id={item._id}
-                handleChangeQty={handleChange}
-                handleDeleteItem={handleDelete}
-              />
-            ))
-          }
-        </div>
-        {/* cart footer */}
-        <div className="w-full border">
-          <div className="flex justify-between items-center p-3">
-            <p className="font-bold">Total:</p>
-            <p className="font-bold text-secondary-gray/70 text-lg">$ {total}</p>
-          </div>
-          
-          <button className="w-full bg-primary-red text-white py-3 font-bold active:bg-secondary-gray hover:bg-secondary-gray transition-all">
-            Checkout
-          </button>
-        </div>
+        {
+          cartItems?.products.length 
+            ? (
+              <>
+                <div className="flex w-full flex-wrap">
+                  { 
+                    cartItems.products.map((item) => (
+                      <CartItem
+                        cart_id={cartItems._id}
+                        key={item._id}
+                        product={item.product_id}
+                        quantity={item.quantity}
+                        id={item._id}
+                        handleChangeQty={handleChange}
+                        handleDeleteItem={handleDelete}
+                      />
+                    ))
+                  }
+                </div>
+                {/* cart footer */}
+                <div className="w-full border">
+                  <div className="flex justify-between items-center p-3">
+                    <p className="font-bold">Total:</p>
+                    <p className="font-bold text-secondary-gray/70 text-lg">$ {total}</p>
+                  </div>
+                  
+                  <button className="w-full bg-primary-red text-white py-3 font-bold active:bg-secondary-gray hover:bg-secondary-gray transition-all">
+                    Checkout
+                  </button>
+                </div>
+              </>)
+            : emptyCart
+        }
+        
       </div>
+      
+      
 
     </div>
   )

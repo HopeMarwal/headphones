@@ -14,6 +14,10 @@ export default function ProductCard({ data }) {
   const { data: session } = useSession()
 
   const handleAddToCart = async () => {
+    if(!session) {
+      window.alert('Please login to add items in cart')
+      return
+    }
     setStatus('process')
     try {
       // API POST new prompt to db
