@@ -10,8 +10,7 @@ export const POST = async (req, res) => {
     console.log(existingCart)
 
     if(existingCart) {
-
-      console.log('Cart is already exists')
+      // TODO CHeck if item is in Cart
       const itemToAdd = {
         user: userId,
         quantity: quantity,
