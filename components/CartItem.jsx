@@ -5,11 +5,10 @@ import Image from "next/image"
 import { Rating } from "react-simple-star-rating"
 // Hooks
 import { useSession } from "next-auth/react"
-import { useState } from "react"
 
-export default function CartItem({ product, quantity, id, handleChangeQty }) {
+export default function CartItem({ product, quantity, id, handleChangeQty, cart_id, handleDeleteItem }) {
   // State data
-  const [qty, setQty] = useState(quantity);
+
   const { data: session } = useSession()
 
   const handleQuantity = async (action) => {
@@ -35,9 +34,29 @@ export default function CartItem({ product, quantity, id, handleChangeQty }) {
     } catch (error) {
       console.log(error)
     } finally {
-      //
+      // add handlers
     }
   }
+
+  const handleDelete = async (prod_id) => {
+    try {
+      // API PATCH new qty value to db
+      const res = await fetch(`/api/cart/delete/${cart_id}/${product._id}`, {
+        method: 'DELETE'
+      })
+      if(res.ok) {
+        // handle delete from local cart
+        console.log('Success delete')
+        handleDeleteItem(prod_id)
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      // add handlers
+    }
+  }
+
+
   
   return (
     <div className="product_item">
@@ -83,6 +102,7 @@ export default function CartItem({ product, quantity, id, handleChangeQty }) {
       </div>
 
       <div className="flex items-end">
+        <button onClick={() => handleDelete(product._id)}>x</button>
         <p className="text-secondary-gray/70 font-bold">$ {product.price}</p>
       </div>
 

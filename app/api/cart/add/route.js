@@ -5,12 +5,23 @@ export const POST = async (req, res) => {
   const { userId, quantity, productId } = await req.json()
   try {
     await connectToDb();
-
     const existingCart = await Cart.findOne({ user: userId})
-    console.log(existingCart)
 
     if(existingCart) {
-      // TODO CHeck if item is in Cart
+
+      // CHeck if item is in Cart
+      let isItemInCart = false
+      existingCart.products.forEach(el => {
+        if( el.product_id == productId) {
+          isItemInCart = true
+        }
+      });
+
+     //if item in cart return item is in the cart
+     if( isItemInCart ) {
+      return new Response('Item is already in your cart', { status: 208})
+     }
+
       const itemToAdd = {
         user: userId,
         quantity: quantity,
@@ -35,36 +46,7 @@ export const POST = async (req, res) => {
       
       return new Response(JSON.stringify(newCartItem), { status: 201 })
     }
-
-    
-
   } catch (error) {
-    
     console.log(error)
   }
 }
-
-//PATCH (update)
-// export const PATCH = async ( req, { params }) => {
-//   const { prompt, tag, img } = await req.json();
-
-//   try {
-//     await connectToDB();
-//     //get prompt by id
-//     const existingPrompt = await Prompt.findById(params.id)
-
-//     if(!existingPrompt) {
-//       return new Response('Prompt not found', { status: 404 })
-//     }
-
-//     existingPrompt.prompt = prompt
-//     existingPrompt.tag = tag
-//     existingPrompt.img = img
-
-//     await existingPrompt.save()
-
-//     return new Response(JSON.stringify(existingPrompt), { status: 200 })
-//   } catch (error) {
-//     return new Response('Failed to update the prompt', { status: 500 })
-//   }
-// }
