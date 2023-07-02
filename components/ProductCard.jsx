@@ -75,6 +75,8 @@ export default function ProductCard({ data }) {
             className="product_image"
             width={200}
             height={200}
+            style={{objectFit: "contain"}}
+            priority={true}
           />
         </Link>
 

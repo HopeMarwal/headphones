@@ -1,10 +1,30 @@
+'use client'
 import Image from "next/image"
 // Hero banner image
 import heroImg from '../public/images/hero_banner_img.png'
+// Animate on scroll
+import { motion } from "framer-motion"
 
 export default function Header() {
+  const motionVariant =  {
+    hide: {
+        opacity: 0,
+    },
+    show: {
+        opacity: 1,
+        transition: {
+            duration: 1,
+        },
+    },
+};
+
   return (
-    <header>
+    <motion.header
+      initial="hide"
+      whileInView="show"
+      exit="hide"
+      variants={motionVariant}
+    >
 
         <div className="max-w-6xl m-auto flex flex-wrap">
           <div className="w-10/12 m-auto md:w-6/12">
@@ -33,6 +53,6 @@ export default function Header() {
           </div>
         </div>
   
-      </header>
+      </motion.header>
   )
 }

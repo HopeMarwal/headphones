@@ -12,7 +12,7 @@ export default function Home() {
       {/* Hero banner */}
       <Header />
       {/* Product image carousel */}
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto relative">
         <CarouselProducts />
         <ProductItemMain />
         <Products heading='Our Latest Product'/>

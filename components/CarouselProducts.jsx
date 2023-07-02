@@ -7,6 +7,8 @@ import { useEffect, useState} from "react";
 import blue from '../public/images/blue.png'
 import red from '../public/images/red.png'
 import orange from '../public/images/orange.png'
+// Animate on scroll 
+import { motion } from 'framer-motion';
 
 export default function CarouselProducts() {
   const images = [blue, red, orange]
@@ -35,10 +37,29 @@ export default function CarouselProducts() {
     };
   }, [emblaApi]);
 
+  const motionVariant =  {
+    hide: {
+        opacity: 0,
+       
+    },
+    show: {
+        opacity: 1,
+       
+        transition: {
+            duration: 1,
+        },
+    },
+};
 
   return (
-    <div className='py-20'>
-      <h3>Our Latest <br />colour collection 2023</h3>
+    <motion.div
+      className='py-20'
+      initial="hide"
+      whileInView="show"
+      exit="hide"
+      variants={motionVariant}
+    >
+      <h3>Our Latest <br />color collection 2023</h3>
       <div className='relative mt-10 flex items-center'>
 
       <button
@@ -76,7 +97,7 @@ export default function CarouselProducts() {
          {'>'}
         </button>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

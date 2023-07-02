@@ -10,6 +10,7 @@ import bluetooth from '@/public/icons/bluetooth.svg'
 import battery from '@/public/icons/battery.svg'
 // Components
 import { Rating } from "react-simple-star-rating"
+import LoadingSpinner from "@/components/LoadingSpinner"
 
 export default function page({ params }) {
   const [product, setProduct] = useState(null);
@@ -66,7 +67,7 @@ export default function page({ params }) {
   return (
     <div>
       <div className="h-20 bg-primary-red"></div>
-      { product &&
+      { product ?
       <div className='product_page'>
 
         <div className='w-full sm:w-6/12 pr-0 sm:pr-10'>
@@ -124,6 +125,7 @@ export default function page({ params }) {
         </div>
       
       </div>
+      : <div className="h-screen"><LoadingSpinner /></div>
       }
     </div>
   )

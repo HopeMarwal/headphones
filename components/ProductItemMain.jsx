@@ -1,12 +1,51 @@
+'use client'
 import img from '../public/images/product_main_banner.png'
 import Image from 'next/image'
 // Data
 import { specifications } from '@/utils/data'
+// Animate on scroll
+import { motion } from "framer-motion"
 
 export default function ProductItemMain() {
+
+  const motionLeftVariant =  {
+    hide: {
+        opacity: 0,
+        x: -200
+    },
+    show: {
+      x: 0,
+      opacity: 1,
+      transition: {
+          duration: 1,
+      },
+    },
+  };
+
+  const motionRightVariant =  {
+    hide: {
+        x: 200,
+        opacity: 0,
+    },
+    show: {
+      x: 0,
+      opacity: 1,
+      transition: {
+          duration: 1,
+          
+      },
+    },
+  };
+
   return (
-    <div className='flex flex-wrap p-3 items-center'>
-      <div className='w-full sm:w-6/12'>
+    <div className='flex flex-wrap p-3 items-center overflow-hidden relative'>
+      <motion.div
+        className='w-full sm:w-6/12'
+        initial="hide"
+        whileInView="show"
+        exit="hide"
+        variants={motionLeftVariant}
+      >
         <h3 className='text-4xl text-secondary-gray font-bold mb-10 text-center sm:text-left'>
           Good headphones and loud music is all you need
         </h3>
@@ -26,14 +65,21 @@ export default function ProductItemMain() {
             </div>
           ))
         }
-      </div>
-      <div className='w-full sm:w-6/12'>
+      </motion.div>
+
+      <motion.div 
+        className='w-full sm:w-6/12'
+        initial="hide"
+        whileInView="show"
+        exit="hide"
+        variants={motionRightVariant}  
+      >
         <Image
           src={img}
           alt='headphones'
           className='w-9/12 m-auto sm:w-full'
         />
-      </div>
+      </motion.div>
     </div>
   )
 }

@@ -36,6 +36,12 @@ h3 {
   @apply w-10 h-10 md:w-14 md:h-14;
 }
 
+.bg_red {
+  background-image: url('../public/images/bg.svg'), linear-gradient(74.79deg, #FF9292 -7.33%, #DE5150 90.21%);
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
 /* Nav */
 nav {
   @apply relative w-full max-w-6xl m-auto z-10;

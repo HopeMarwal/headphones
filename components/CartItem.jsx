@@ -35,7 +35,7 @@ export default function CartItem({ product, quantity, id, handleChangeQty, cart_
         })
       })
       if(res.ok) {
-        // Pass changes to local car
+        // Pass changes to local cart
         handleChangeQty(newQty, id)
       }
     } catch (error) {
