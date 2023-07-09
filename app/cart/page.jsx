@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 // Next navigation
 import Link from "next/link";
+//Axios
+import axios from "axios";
 
 
 export default function page() {
@@ -38,8 +40,19 @@ export default function page() {
   }, [session?.user.id])
 
 
-  const handleCheckout = async () => {
-  
+  const handleCheckout = async (e) => {
+    e.preventDefault()
+
+    const { data } = await axios.post('/api/payment', {
+      products: cartItems.products
+    },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+    )
+    window.location.assign(data)
   }
  
   const handleChange = (qty, id) => {
