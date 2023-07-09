@@ -10,6 +10,7 @@ import { useSession } from "next-auth/react";
 // Next navigation
 import Link from "next/link";
 
+
 export default function page() {
   // State
   const [ cartItems, setCartItems ] = useState(null);
@@ -20,7 +21,6 @@ export default function page() {
 
   useEffect(() => {
     //Fetch cart data 
-    
     const fetchCart = async () => {
       const res = await fetch(`/api/cart/${session?.user.id}`)
       const data = await res.json()
@@ -30,9 +30,17 @@ export default function page() {
       setCartItems(data[0])
       setLoading(false)
     }
-    if(session?.user.id) fetchCart()
+    if(session?.user.id) {
+      fetchCart()
+    } else {
+      setLoading(false)
+    }
   }, [session?.user.id])
 
+
+  const handleCheckout = async () => {
+  
+  }
  
   const handleChange = (qty, id) => {
     let newCart = {...cartItems}
@@ -59,7 +67,6 @@ export default function page() {
     setTotal(totalCount)
   }
 
-
   const calculateTotal = (data) => {
     let totalCount = 0
     data.forEach(el => {
@@ -78,8 +85,8 @@ export default function page() {
  
   if( loading ) {
     return (
-      <div className="min-h-screen">
-        <div className='h-40 bg-primary-red'></div>
+      <div className="min-h-screen dark:bg-neutral-800">
+        <div className='h-40 bg-primary-red dark:bg-red-950'></div>
 
           <div className="relative p-10 ">
             <Image  
@@ -102,9 +109,35 @@ export default function page() {
     )
   }
 
+  if(!session) { 
+    return (
+      <div className="min-h-screen dark:bg-neutral-800">
+        <div className='h-40 bg-primary-red dark:bg-red-950'></div>
+
+        <div className="relative p-10 ">
+          <Image  
+            className="absolute left-1/2 -top-3/4 -translate-x-1/2"
+            src={bag}
+            width={150}
+            height={150}
+            alt='icon cart'
+          />
+        </div>
+
+        <div className="flex max-w-xl m-auto p-3 font-bold text-4xl flex-wrap text-center">
+          <p className="w-full">
+            Please {' '}
+            <span className="text-primary-red">Login</span> to add items to cart
+          </p>
+        </div>
+    </div>
+      
+    )
+  }
+
   return (
-    <div className="min-h-screen">
-      <div className='h-40 bg-primary-red'></div>
+    <div className="min-h-screen dark:bg-neutral-800">
+      <div className='h-40 bg-primary-red dark:bg-red-950'></div>
       {/* Image banner */}
       <div className="relative p-10 ">
         <div className="z-10 absolute left-1/2 -top-16 -translate-x-1/2 rounded-full w-7 h-7 bg-white text-secondary-gray flex items-center justify-center">
@@ -141,14 +174,14 @@ export default function page() {
                 }
               </div>
               {/* Cart footer */}
-              <div className="w-full border">
+              <div className="w-full border dark:border-gray-400/50">
 
                 <div className="flex justify-between items-center p-3">
                   <p className="font-bold">Total:</p>
-                  <p className="font-bold text-secondary-gray/70 text-lg">$ {total}</p>
+                  <p className="font-bold text-secondary-gray/70 dark:text-white/70 text-lg">$ {total}</p>
                 </div>
                 
-                <button className="w-full bg-primary-red text-white py-3 font-bold active:bg-secondary-gray hover:bg-secondary-gray transition-all">
+                <button onClick={handleCheckout} className="w-full bg-primary-red text-white py-3 font-bold active:bg-secondary-gray hover:bg-secondary-gray transition-all">
                   Checkout
                 </button>
               </div>

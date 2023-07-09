@@ -6,7 +6,7 @@ body {
   @apply relative bg-white;
 }
 header {
-  @apply w-full py-14 pt-24;
+  @apply w-full py-14 pt-24 dark:bg-dark-banner;
   background-image: url('../public/images/bg.svg'), linear-gradient(74.79deg, #FF9292 -7.33%, #DE5150 90.21%);
   background-position: left;
   background-repeat: no-repeat;
@@ -14,11 +14,11 @@ header {
 }
 
 h3 {
-  @apply font-bold text-4xl sm:text-5xl text-secondary-gray font-bold text-center;
+  @apply font-bold text-4xl sm:text-5xl text-secondary-gray dark:text-white font-bold text-center;
 }
 
 .btn {
-  @apply uppercase transition-all text-primary-red bg-white px-8 py-3 w-fit rounded-3xl font-semibold;
+  @apply uppercase transition-all text-primary-red bg-white dark:bg-white/90 px-8 py-3 w-fit rounded-3xl font-semibold;
 }
 
 .btn:hover, .btn:active {
@@ -37,6 +37,7 @@ h3 {
 }
 
 .bg_red {
+  @apply dark:bg-dark-banner;
   background-image: url('../public/images/bg.svg'), linear-gradient(74.79deg, #FF9292 -7.33%, #DE5150 90.21%);
   background-position: left;
   background-repeat: no-repeat;
@@ -62,7 +63,7 @@ nav li:hover, nav li.active {
 /* Footer */
 
 footer {
-  @apply w-full bg-primary-red;
+  @apply w-full bg-primary-red dark:bg-red-950;
 }
 /* Carousel */
 
@@ -118,7 +119,7 @@ footer {
 }
 
 .case li {
-  @apply text-black/70 text-lg font-normal border-b p-3 flex items-center;
+  @apply text-black/70 dark:text-white/70 text-lg font-normal border-b p-3 flex items-center;
   
 }
 
@@ -127,12 +128,13 @@ footer {
 }
 
 .case li::before {
-  @apply mr-2 mt-2;
-  content: url('../public/icons/arrow.svg');
+  @apply mr-2 mt-2 dark:content-[url('../public/icons/arrow_dark.svg')] content-[url('../public/icons/arrow.svg')];
 }
 
 /* Subscribe */
-
+.drop_shadow {
+  filter: drop-shadow(5px 0px 24px #FFFFFF);
+}
 .subscribe {
   background-image: url('../public/images/bg_subscribe.png');
   background-size: contain;
@@ -155,7 +157,7 @@ footer {
 /* Cart */
 
 .product_item {
-  @apply w-full p-3 flex border rounded mb-4 gap-4;
+  @apply w-full p-3 flex border rounded mb-4 gap-4 dark:border-gray-400/50;
 }
 
 .product_item svg {

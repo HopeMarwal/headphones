@@ -8,17 +8,17 @@ import Header from "@/components/Header"
 
 export default function Home() {
   return (
-    <main>
+    <>
       {/* Hero banner */}
       <Header />
       {/* Product image carousel */}
-      <div className="max-w-6xl mx-auto relative">
+      <main className="max-w-6xl mx-auto relative dark:bg-neutral-800">
         <CarouselProducts />
         <ProductItemMain />
         <Products heading='Our Latest Product'/>
         <CaseBag />
         <Subscribe />
-      </div>
-    </main>
+      </main>
+    </>
   )
 }

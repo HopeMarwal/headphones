@@ -65,19 +65,19 @@ export default function page({ params }) {
                     </div></>
   
   return (
-    <div>
-      <div className="h-20 bg-primary-red"></div>
+    <div className="dark:bg-neutral-800">
+      <div className="h-20 bg-primary-red dark:bg-red-950"></div>
       { product ?
       <div className='product_page'>
 
         <div className='w-full sm:w-6/12 pr-0 sm:pr-10'>
           {/* Product Image */}
           <Image
+            className='m-auto'
             src={product.img}
             alt='headphones'
             width={300}
             height={300}
-            className='m-auto'
           />
           {/* Product description */}
           <div className="flex flex-wrap w-full sm:w-7/12 m-auto mt-6 ">
@@ -105,7 +105,7 @@ export default function page({ params }) {
         
         {/* Product specifications */}
         <div className='w-full sm:w-6/12'>
-          <h3 className='text-4xl text-secondary-gray font-bold my-10 text-center sm:text-left capitalize'>
+          <h3 className='text-4xl text-secondary-gray dark:text-white font-bold my-10 text-center sm:text-left capitalize'>
             {product.name}
           </h3>
           {Object.entries(product?.specifications).map(([key, value]) => (
@@ -115,8 +115,8 @@ export default function page({ params }) {
                   alt={key}
                 />
                 <div>
-                  <p className='text-2xl text-secondary-gray font-medium capitalize'>{key}</p>
-                  <p className=' text-secondary-gray/70'>{value}</p>
+                  <p className='text-2xl text-secondary-gray dark:text-white font-medium capitalize'>{key}</p>
+                  <p className=' text-secondary-gray/70 dark:text-white/70'>{value}</p>
                   <a className='text-primary-red font-medium' href="">Learn More</a>
                 </div>
               </div>

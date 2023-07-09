@@ -13,8 +13,12 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react"
 import { RiShoppingBag3Line } from 'react-icons/ri';
 import { FiSearch } from 'react-icons/fi'
 import { VscListFlat } from 'react-icons/vsc';
-import { BsPerson } from 'react-icons/bs';
+import { BsPerson, BsSun, BsMoonFill } from 'react-icons/bs';
 import { AiOutlineLogout } from 'react-icons/ai'
+//Theme toggle
+import { useTheme } from "next-themes"
+
+
 
 export default function Nav() {
   // Auth
@@ -22,14 +26,29 @@ export default function Nav() {
   // State
   const [providers, setProviders] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  //Theme
+  const { systemTheme, theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  
+  const currentTheme = theme === 'system' ? systemTheme : theme
 
   useEffect(() => {
     const setupProviders = async () => {
       const res = await getProviders()
       setProviders(res)
     }
+    setMounted(true)
     setupProviders()
   }, [])
+
+  const toggleIconTheme = () => {
+    if(!mounted) return null
+    if(currentTheme === 'dark') {
+      return <BsSun />
+    } else {
+      return <BsMoonFill />
+    }
+  }
 
   // Next navigation
   const pathname = usePathname()
@@ -52,6 +71,14 @@ export default function Nav() {
   
   const handleToggleMenu = () => {
     setIsMenuOpen((prev) => !prev)
+  }
+
+  const toggleTheme = () => {
+    if(currentTheme === 'dark') {
+      setTheme('light')
+    } else {
+      setTheme('dark')
+    }
   }
 
   return (
@@ -94,9 +121,12 @@ export default function Nav() {
         </div>
 
         {/* Menu */}
-        <div>
+        <div className="flex items-center">
           <button onClick={handleToggleMenu} className="text-white text-2xl w-14">
             <VscListFlat />
+          </button>
+          <button onClick={toggleTheme} className="rounded-full bg-white text-primary-red w-8 h-8 flex items-center justify-center">
+            {toggleIconTheme()}
           </button>
         </div>
         {isMenuOpen && 

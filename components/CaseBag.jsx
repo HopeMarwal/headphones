@@ -23,7 +23,7 @@ const item = {
   return (
     <div className="case">
       <div className="w-full md:w-7/12">
-        <Image src={img} alt='case for headphones'/>
+        <Image className="drop_shadow" src={img} alt='case for headphones'/>
       </div>
       <div className="w-full sm:w-7/12 m-auto md:w-5/12">
         <h3 className="text-left">Whatever you get in the box</h3>

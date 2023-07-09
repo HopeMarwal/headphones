@@ -105,9 +105,9 @@ export default function ProductCard({ data }) {
             readonly={true}
             allowFraction={true}
           />
-          <span className="font-bold">{data.rating}</span>
+          <span className="font-bold dark:text-white">{data.rating}</span>
         </div>
-        <div className="flex justify-between items-center w-full">
+        <div className="flex justify-between items-center w-full dark:text-white">
           <p className="capitalize py-2 text-lg">{data.name}</p>
           <p className="text-lg">$ {data.price}</p>
         </div>

@@ -58,8 +58,8 @@ export default function ProductItemMain() {
                 alt={item.title}
               />
               <div>
-                <p className='text-2xl text-secondary-gray font-medium'>{item.title}</p>
-                <p className=' text-secondary-gray/70'>{item.desc}</p>
+                <p className='text-2xl text-secondary-gray dark:text-white font-medium'>{item.title}</p>
+                <p className=' text-secondary-gray/70 dark:text-white/70'>{item.desc}</p>
                 <a className='text-primary-red font-medium' href="">Learn More</a>
               </div>
             </div>

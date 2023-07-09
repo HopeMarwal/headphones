@@ -25,7 +25,7 @@ export default function Subscribe() {
         whileInView="show"
         exit="hide"
         variants={motionVariant}
-        className="w-full sm:w-10/12 md:w-8/12 m-auto py-12 rounded-3xl bg-red-50"
+        className="w-full sm:w-10/12 md:w-8/12 m-auto py-12 rounded-3xl bg-red-50 dark:bg-red-50/60"
       >
         <h3>Subscribe</h3>
         <p className="text-center my-5 font-normal opacity-70">Subscribe to get our latest promotion</p>
