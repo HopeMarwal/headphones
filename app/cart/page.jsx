@@ -26,7 +26,9 @@ export default function page() {
     const fetchCart = async () => {
       console.log(session.user.id)
       const res = await fetch(`/api/cart/${session?.user.id}`)
+      console.log(res)
       const data = await res.json()
+      console.log(data)
       // Count total
       let totalCount = calculateTotal(data[0].products)
       setTotal(totalCount)
