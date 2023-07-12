@@ -24,6 +24,7 @@ export default function page() {
   useEffect(() => {
     //Fetch cart data 
     const fetchCart = async () => {
+      console.log(session.user.id)
       const res = await fetch(`/api/cart/${session?.user.id}`)
       const data = await res.json()
       // Count total
