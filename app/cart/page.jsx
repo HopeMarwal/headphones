@@ -25,7 +25,12 @@ export default function page() {
     //Fetch cart data 
     const fetchCart = async () => {
       console.log(session.user.id)
-      const res = await fetch(`/api/cart/${session?.user.id}`)
+      const res = await fetch(`/api/cart/${session?.user.id}`, 
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
       console.log(res)
       const data = await res.json()
       console.log(data)
