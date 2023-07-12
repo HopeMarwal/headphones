@@ -28,8 +28,8 @@ export async function POST ( req ) {
             
         }),
         mode: 'payment',
-        success_url: 'http://localhost:3000',
-        cancel_url: 'http://localhost:3000'
+        success_url: `${req.headers.origin}/?success=true`,
+        cancel_url: `${req.headers.origin}/?canceled=true`,
     })
     return NextResponse.json(session.url)
 }
