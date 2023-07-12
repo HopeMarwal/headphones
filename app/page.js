@@ -11,7 +11,7 @@ export default function Home() {
     <>
       {/* Hero banner */}
       <Header />
-      {/* Product image carousel */}
+      {/* Product image carousel*/}
       <main className="dark:bg-neutral-800">
         <div className="max-w-6xl mx-auto relative">
           <CarouselProducts />
