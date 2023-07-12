@@ -30,9 +30,9 @@ export default function page() {
       const data = await res.json()
       console.log(data)
       // Count total
-      let totalCount = calculateTotal(data[0].products)
+      let totalCount = calculateTotal(data.products)
       setTotal(totalCount)
-      setCartItems(data[0])
+      setCartItems(data)
       setLoading(false)
     }
     if(session?.user.id) {
